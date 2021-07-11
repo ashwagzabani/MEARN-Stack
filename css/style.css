@@ -43,3 +43,24 @@
 .blogCards{
     display: flex !important;
 }
+
+.footer{
+    background-color: #98d4d2;
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+}
+
+.footer ul.footerList{
+    list-style-type: none;
+}
+
+.footer ul.footerList li{
+    padding: 5px 0;
+}
+
+.footer h6{
+    text-align: center;
+}
+
