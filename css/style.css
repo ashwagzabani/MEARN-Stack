@@ -44,6 +44,31 @@
     display: flex !important;
 }
 
+#contact {
+    background-color: #98d4d2;
+    height: 150px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding: 30px 15%;
+    margin-bottom: 20%;
+    text-align: center;
+}
+
+#contact .fas{
+    font-size: 28pt;
+    margin-bottom: 20px;
+}
+
+#contact h1{
+    text-align: center;
+    color: #ffffff;
+}
+.contactCard{
+    position: relative;
+    display: block;
+    margin-bottom: 40px;
+}
+
 .footer{
     background-color: #98d4d2;
     color: #ffffff;

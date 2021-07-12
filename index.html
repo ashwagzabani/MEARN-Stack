@@ -9,6 +9,10 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
     <!-- My own style -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -20,6 +24,35 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- this CDN for jQuery Dialog -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            $("#dialog").dialog({
+                minWidth: 400,
+                maxWidth: 1000,
+                show: { effect: "blind", duration: 800 },
+                buttons: [
+                    {
+                        text: "Ok",
+                        icon: "ui-icon-comment",
+                        click: function createNewBlog() {
+                            var blogTitle = $('#blogTitle').val()
+                            var blogContent = $('#blogContent').val()
+                            var blogImg = $('#blogImg').val()
+                            
+                            console.log("object " + blogImg + ' ' + blogContent);
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -106,6 +139,36 @@
                 </div>
             </div>
         </section>
+
+        <section id="contact">
+            <h1>Contact us</h1>
+            <div class="contactCard">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="fas fa-envelope"></i>
+                                <p><b>Via email</b></p>
+                                <p>Integer id aliquam ex. Donec mauris metus, volutpat non finibus ac, mattis rhoncus
+                                    dolor</p>
+                                <b>example@emaple.com</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="fas fa-phone-square-alt"></i>
+                                <p><b>Via phone</b></p>
+                                <p>Integer id aliquam ex. Donec mauris metus, volutpat non finibus ac, mattis rhoncus
+                                    dolor</p>
+                                <b>+9 999-999-99</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
     <footer class="footer">
         <div class="row container">
@@ -131,6 +194,22 @@
         <h6>Ashwag Zabani</h6>
     </footer>
 
+    <div id="dialog" title="Create new blog">
+        <form onsubmit="createNewBlog()">
+            <div class="form-group">
+                <label for="blogTitle">Blog title</label>
+                <input type="text" class="form-control" id="blogTitle" />
+            </div>
+            <div class="form-group">
+                <label for="blogContent">Blog content</label>
+                <textarea class="form-control" id="blogContent" rows="6"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="blogImg">Blog cover image</label>
+                <input type="file" class="form-control-file" id="blogImg">
+            </div>
+        </form>
+    </div>
 
     <script src="js/javascript.js"></script>
 </body>
