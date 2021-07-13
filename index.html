@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>BLOGGY</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,35 +24,6 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- this CDN for jQuery Dialog -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <script>
-        $(function () {
-            $("#dialog").dialog({
-                minWidth: 400,
-                maxWidth: 1000,
-                show: { effect: "blind", duration: 800 },
-                buttons: [
-                    {
-                        text: "Ok",
-                        icon: "ui-icon-comment",
-                        click: function createNewBlog() {
-                            var blogTitle = $('#blogTitle').val()
-                            var blogContent = $('#blogContent').val()
-                            var blogImg = $('#blogImg').val()
-                            
-                            console.log("object " + blogImg + ' ' + blogContent);
-                            $(this).dialog("close");
-                        }
-                    }
-                ]
-            });
-        });
-    </script>
-
 </head>
 
 <body>
@@ -79,7 +50,8 @@
                     </li>
 
                 </ul>
-                <button class="newBlogBtn">New Blog</button>
+                <button type="button" class="newBlogBtn" data-toggle="modal" data-target="#newBlogForm">
+                    New Blog</button>
             </div>
         </nav>
         <img class="cover-img" src="img/cover-image.png" />
@@ -94,8 +66,8 @@
         <section class="recetBlogs" id="recetBlogs">
             <hr />
             <h1>Recent Blog</h1>
-            <div class="blogCards row">
-                <div class="col-md-4">
+            <div class="blogCards row" id="blogCards">
+                <div class="col">
                     <div class="card">
                         <div class="card-header">
                             <img src="img/logo.png" width="60px" height="60px" />
@@ -109,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col">
                     <div class="card">
                         <div class="card-header">
                             <img src="img/logo.png" width="60px" height="60px" />
@@ -123,7 +95,35 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <img src="img/logo.png" width="60px" height="60px" />
+                        </div>
+                        <div class="card-body">
+                            <p>Integer id aliquam ex. Donec mauris metus, volutpat non finibus ac, mattis rhoncus dolor.
+                                Aenean quis
+                                tellus imperdiet, convallis dolor a, sodales purus. Nulla facilisi. Class aptent taciti
+                                sociosqu ad
+                                litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <img src="img/logo.png" width="60px" height="60px" />
+                        </div>
+                        <div class="card-body">
+                            <p>Integer id aliquam ex. Donec mauris metus, volutpat non finibus ac, mattis rhoncus dolor.
+                                Aenean quis
+                                tellus imperdiet, convallis dolor a, sodales purus. Nulla facilisi. Class aptent taciti
+                                sociosqu ad
+                                litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
                     <div class="card">
                         <div class="card-header">
                             <img src="img/logo.png" width="60px" height="60px" />
@@ -194,24 +194,42 @@
         <h6>Ashwag Zabani</h6>
     </footer>
 
-    <div id="dialog" title="Create new blog">
-        <form onsubmit="createNewBlog()">
-            <div class="form-group">
-                <label for="blogTitle">Blog title</label>
-                <input type="text" class="form-control" id="blogTitle" />
+    <!-- create new blog form modal -->
+    <div class="modal fade" id="newBlogForm" tabindex="-1" role="dialog" aria-labelledby="createNewBlogForm"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Create new blog</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="blogTitle">Blog title</label>
+                            <input type="text" class="form-control" id="blogTitle" />
+                        </div>
+                        <div class="form-group">
+                            <label for="blogContent">Blog content</label>
+                            <textarea class="form-control" id="blogContent" rows="6"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="blogImg">Blog cover image</label>
+                            <input type="file" class="form-control-file" id="blogImg">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" onclick="createNewBlog()">Save changes</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="blogContent">Blog content</label>
-                <textarea class="form-control" id="blogContent" rows="6"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="blogImg">Blog cover image</label>
-                <input type="file" class="form-control-file" id="blogImg">
-            </div>
-        </form>
+        </div>
     </div>
 
-    <script src="js/javascript.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
