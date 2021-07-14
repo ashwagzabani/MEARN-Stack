@@ -45,6 +45,11 @@
     display: flex !important;
 }
 
+.cardImage {
+    width: 150px;
+    height: 150px; 
+}
+
 #contact {
     background-color: #98d4d2;
     height: 150px;

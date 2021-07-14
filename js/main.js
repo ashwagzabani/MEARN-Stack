@@ -45,15 +45,17 @@ function newBlog(blogTitle, blogContent) {
     currentBlogs.push(newBlogObj);
     localStorage.setItem('blogDB', JSON.stringify({ "blogs": currentBlogs }))
 
-    createNewBlogDOM(newBlogObj.id, blogTitle, blogContent, blogImg)
+    createNewBlogDOM(newBlogObj.id, blogTitle, blogContent, newBlogObj.image)
 
 }
 
 
-function createNewBlogDOM(blogId, blogTitle, blogContent) {
-    var parent = document.getElementById('blogCards');
+function createNewBlogDOM(blogId, blogTitle, blogContent, blogImg) {
+    let parent = document.getElementById('blogCards');
+
     let card = document.createElement('div');
     card.className = 'card';
+    card.id = blogId;
 
     let cardHeader = document.createElement('div');
     cardHeader.className = 'card-header';
@@ -62,18 +64,21 @@ function createNewBlogDOM(blogId, blogTitle, blogContent) {
     cardBody.className = 'card-body';
 
     let img = document.createElement('img');
-    img.src = localStorage.getItem('tempImgUrl');
+    img.className = "cardImage";
+    img.src = blogImg;
 
 
     let title = document.createElement('h5');
-    title.innerText = "task.title";
-    title.className = 'card-title';
+    title.innerText = blogTitle;
 
+    let content = document.createElement('p');
+    content.innerText = blogContent;
 
     cardBody.appendChild(title);
+    cardBody.appendChild(content);
     cardHeader.appendChild(img);
     card.appendChild(cardHeader);
     card.appendChild(cardBody);
     parent.appendChild(card);
-    console.log("hnjmkl");
+    // console.log("hnjmkl");
 }
