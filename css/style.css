@@ -5,13 +5,6 @@
     background-color: #98d4d2;
 }
 
-#navbarNav {
-    position: absolute;
-    background-color: #98d4d2;
-    top: 80%;
-    width: 100%;
-    z-index: 1;
-}
 
 .navbar-light .navbar-nav .nav-link{
     color: #ffffff;
@@ -46,6 +39,7 @@
 
 .recetBlogs{
     margin-top: 15%;
+    margin-bottom: 15%;
 }
 
 
@@ -73,6 +67,23 @@
     text-overflow: ellipsis; /* give the beautiful '...' effect */
 }
 
+
+#aboutus{
+    background: linear-gradient(transparent, #ffffff , #98d4d2);
+    background-color: #98d4d2;
+    background-attachment: fixed;
+    background-size: cover;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding: 30px 15%;
+    margin-bottom: 20%;
+    text-align: center;
+}
+
+#aboutus h1{
+    margin: 20px 0 50px;
+}
+
 #contact {
     background: linear-gradient(transparent, #98d4d2 , #98d4d2), url('https://copernicus-computing.org/wp-content/uploads/2020/11/contact-us.jpg') no-repeat;
     background-color: #98d4d2;
@@ -92,7 +103,6 @@
 
 #contact h1{
     text-align: center;
-    color: #ffffff;
     margin-bottom: 20px;
 } 
 
@@ -112,9 +122,19 @@
     list-style-type: none;
 }
 
-.footer ul.footerList li{
+.footer ul.footerList li {
     padding: 5px 0;
 }
+
+.footer ul.footerList li a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer ul.footerList li a:hover{
+    color: #1b4d89;
+}   
+
 
 .footer h6{
     text-align: center;
@@ -127,6 +147,13 @@
         height: auto;
         background-color: #98d4d2;
         padding-bottom: 50px;
+    }
+    #navbarNav {
+        position: absolute;
+        background-color: #98d4d2;
+        top: 80%;
+        width: 100%;
+        z-index: 1;
     }
     .cover-img{
         float: right;
@@ -147,6 +174,13 @@
 @media screen and (max-width: 768px) {
     .cover-img{
         display: none;
+    }
+    #navbarNav {
+        position: absolute;
+        background-color: #98d4d2;
+        top: 80%;
+        width: 100%;
+        z-index: 1;
     }
     .intro-content p{
         width: 80%;
