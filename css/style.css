@@ -5,6 +5,14 @@
     background-color: #98d4d2;
 }
 
+#navbarNav {
+    position: absolute;
+    background-color: #98d4d2;
+    top: 80%;
+    width: 100%;
+    z-index: 1;
+}
+
 .navbar-light .navbar-nav .nav-link{
     color: #ffffff;
 
