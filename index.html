@@ -66,77 +66,8 @@
         <section class="recetBlogs" id="recetBlogs">
             <hr />
             <h1>Recent Blog</h1>
-            <div class="blogCards row" id="blogCards">
-                <!-- <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <img src="img/logo.png" class="cardImage"/>
-                        </div>
-                        <div class="card-body">
-                            <p>Integer id aliquam ex. Donec mauris metus, volutpat non finibus ac, mattis rhoncus dolor.
-                                Aenean quis
-                                tellus imperdiet, convallis dolor a, sodales purus. Nulla facilisi. Class aptent taciti
-                                sociosqu ad
-                                litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <img src="img/logo.png" class="cardImage" />
-                        </div>
-                        <div class="card-body">
-                            <p>Integer id aliquam ex. Donec mauris metus, volutpat non finibus ac, mattis rhoncus dolor.
-                                Aenean quis
-                                tellus imperdiet, convallis dolor a, sodales purus. Nulla facilisi. Class aptent taciti
-                                sociosqu ad
-                                litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <img src="img/logo.png" class="cardImage" />
-                        </div>
-                        <div class="card-body">
-                            <p>Integer id aliquam ex. Donec mauris metus, volutpat non finibus ac, mattis rhoncus dolor.
-                                Aenean quis
-                                tellus imperdiet, convallis dolor a, sodales purus. Nulla facilisi. Class aptent taciti
-                                sociosqu ad
-                                litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <img src="img/logo.png" class="cardImage" />
-                        </div>
-                        <div class="card-body">
-                            <p>Integer id aliquam ex. Donec mauris metus, volutpat non finibus ac, mattis rhoncus dolor.
-                                Aenean quis
-                                tellus imperdiet, convallis dolor a, sodales purus. Nulla facilisi. Class aptent taciti
-                                sociosqu ad
-                                litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <img src="img/logo.png" class="cardImage"/>
-                        </div>
-                        <div class="card-body">
-                            <p>Integer id aliquam ex. Donec mauris metus, volutpat non finibus ac, mattis rhoncus dolor.
-                                Aenean quis
-                                tellus imperdiet, convallis dolor a, sodales purus. Nulla facilisi. Class aptent taciti
-                                sociosqu ad
-                                litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                        </div>
-                    </div> 
-                </div>-->
+            <div class="blogCards" id="blogCards">
+                
             </div>
         </section>
 
@@ -206,25 +137,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form onsubmit="createNewBlog()">
                         <div class="form-group">
                             <label for="blogTitle">Blog title</label>
-                            <input type="text" class="form-control" id="blogTitle" />
+                            <input type="text" class="form-control" id="blogTitle" required />
                         </div>
                         <div class="form-group">
                             <label for="blogContent">Blog content</label>
-                            <textarea class="form-control" id="blogContent" rows="6"></textarea>
+                            <textarea class="form-control" id="blogContent" rows="6" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="blogImg">Blog cover image</label>
-                            <input type="file" class="form-control-file" id="blogImg" onchange="onFileSelected(event)">
+                            <input type="file" class="form-control-file" id="blogImg" onchange="onFileSelected(event)"
+                                required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save
+                                changes</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" onclick="createNewBlog()">Save changes</button>
-                </div>
+
             </div>
         </div>
     </div>

@@ -1,8 +1,4 @@
 
-if (localStorage.getItem('blogDB') === null) {
-    localStorage.setItem('blogDB', JSON.stringify({ "blogs": [] }))
-}
-
 var a = JSON.parse(localStorage.getItem("blogDB") || '{}');
 var currentBlogs = a.blogs;
 console.log(a.blogs);
@@ -80,5 +76,55 @@ function createNewBlogDOM(blogId, blogTitle, blogContent, blogImg) {
     card.appendChild(cardHeader);
     card.appendChild(cardBody);
     parent.appendChild(card);
-    // console.log("hnjmkl");
+    console.log("done");
+
+    document.getElementById("blogTitle").value = ""
+    document.getElementById("blogContent").value = ""
+    document.getElementById("blogImg").value = ""
 }
+
+function readAllBlogs() {
+    let parent = document.getElementById('blogCards'), card, cardHeader, cardBody, img, title, content;
+
+    if (localStorage.getItem('blogDB') === null) {
+        localStorage.setItem('blogDB', JSON.stringify({ "blogs": [] }));
+        parent.innerText = 'There is no blog yet!'
+    } else {
+        let blogs = JSON.parse(localStorage.getItem('blogDB')).blogs;
+        console.log(blogs.blogs);
+        blogs.map(blog => {
+            // create new elements
+            parent = document.getElementById('blogCards');
+            card = document.createElement('div');
+            cardHeader = document.createElement('div');
+            cardBody = document.createElement('div');
+            img = document.createElement('img');
+            title = document.createElement('h5');
+            content = document.createElement('p');
+
+            //add classes for the elements
+            card.className = 'card';
+            cardHeader.className = 'card-header';
+            cardBody.className = 'card-body';
+            img.className = "cardImage";
+
+            //assign the values to the elements
+            card.id = blog.id;
+            img.src = blog.image;
+            title.innerText = blog.title;
+            content.innerText = blog.content;
+
+            //append the elements to the html
+            cardBody.appendChild(title);
+            cardBody.appendChild(content);
+            cardHeader.appendChild(img);
+            card.appendChild(cardHeader);
+            card.appendChild(cardBody);
+            parent.appendChild(card);
+
+            console.log("done");
+        })
+    }
+}
+
+readAllBlogs();
