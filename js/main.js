@@ -98,6 +98,7 @@ function readRecentBlogs() {
 
     if (localStorage.getItem('blogDB') === null) {
         localStorage.setItem('blogDB', JSON.stringify({ "blogs": [] }));
+    } if (JSON.parse(localStorage.getItem('blogDB')).blogs.length === 0) {
         parent.innerText = 'There is no blog yet!'
     } else {
         let blogs = JSON.parse(localStorage.getItem('blogDB')).blogs.reverse().slice(0, 3);
