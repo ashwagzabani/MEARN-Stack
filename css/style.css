@@ -67,6 +67,9 @@
     text-overflow: ellipsis; /* give the beautiful '...' effect */
 }
 
+.blogCards .card{
+    cursor: pointer;
+}
 
 #aboutus{
     background: linear-gradient(transparent, #ffffff , #98d4d2);

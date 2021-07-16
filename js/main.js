@@ -1,15 +1,11 @@
-
-var a = JSON.parse(localStorage.getItem("blogDB") || '{}');
-var currentBlogs = a.blogs;
-console.log(a.blogs);
-
-
 function createNewBlog() {
     var blogTitle = document.getElementById('blogTitle').value;
     var blogContent = document.getElementById('blogContent').value;
 
     $('#newBlogForm').modal('hide')
     newBlog(blogTitle, blogContent);
+    // console.log(JSON.parse(localStorage.getItem("blogDB")));
+
 
 }
 
@@ -32,15 +28,23 @@ const onFileSelected = async event => {
 };
 
 function newBlog(blogTitle, blogContent) {
+    var a = JSON.parse(localStorage.getItem("blogDB") || '{}');
+    var currentBlogs = a.blogs;
+    var id;
+    if (a.blogs.length === 0) {
+        id = 0
+    } else {
+        id = a.blogs.length + 1
+    }
     var newBlogObj = {
-        id: a.blogs.length + 1,
+        id: id,
         title: blogTitle,
         content: blogContent,
         image: localStorage.getItem('tempImgUrl')
     }
     currentBlogs.push(newBlogObj);
     localStorage.setItem('blogDB', JSON.stringify({ "blogs": currentBlogs }))
-
+    // console.log(localStorage.getItem('newBlogObj'));
     createNewBlogDOM(newBlogObj.id, blogTitle, blogContent, newBlogObj.image)
 
 }
@@ -48,26 +52,23 @@ function newBlog(blogTitle, blogContent) {
 
 function createNewBlogDOM(blogId, blogTitle, blogContent, blogImg) {
     let parent = document.getElementById('blogCards');
-
     let card = document.createElement('div');
+    let cardHeader = document.createElement('div');
+    let cardBody = document.createElement('div');
+    let img = document.createElement('img');
+    let title = document.createElement('h5');
+    let content = document.createElement('p');
+
     card.className = 'card';
     card.id = blogId;
-
-    let cardHeader = document.createElement('div');
+    card.setAttribute("data-toggle", "modal");
+    card.setAttribute("data-target", "#displayBlog");
     cardHeader.className = 'card-header';
-
-    let cardBody = document.createElement('div');
     cardBody.className = 'card-body';
-
-    let img = document.createElement('img');
     img.className = "cardImage";
+
     img.src = blogImg;
-
-
-    let title = document.createElement('h5');
     title.innerText = blogTitle;
-
-    let content = document.createElement('p');
     content.innerText = blogContent;
 
     cardBody.appendChild(title);
@@ -75,12 +76,21 @@ function createNewBlogDOM(blogId, blogTitle, blogContent, blogImg) {
     cardHeader.appendChild(img);
     card.appendChild(cardHeader);
     card.appendChild(cardBody);
-    parent.appendChild(card);
-    console.log("done");
+    parent.prepend(card);
+    // console.log("done");
 
     document.getElementById("blogTitle").value = ""
     document.getElementById("blogContent").value = ""
     document.getElementById("blogImg").value = ""
+
+    card.onclick = displayBlog([{
+        id: blogId,
+        title: blogTitle,
+        content: blogContent,
+        image: blogImg
+    }]);
+
+    // console.log($('#blogId'));
 }
 
 function readAllBlogs() {
@@ -91,8 +101,8 @@ function readAllBlogs() {
         parent.innerText = 'There is no blog yet!'
     } else {
         let blogs = JSON.parse(localStorage.getItem('blogDB')).blogs;
-        console.log(blogs.blogs);
-        blogs.map(blog => {
+        // console.log(blogs.blogs);
+        blogs.reverse().map(blog => {
             // create new elements
             parent = document.getElementById('blogCards');
             card = document.createElement('div');
@@ -104,6 +114,8 @@ function readAllBlogs() {
 
             //add classes for the elements
             card.className = 'card';
+            card.setAttribute("data-toggle", "modal");
+            card.setAttribute("data-target", "#displayBlog");
             cardHeader.className = 'card-header';
             cardBody.className = 'card-body';
             img.className = "cardImage";
@@ -122,9 +134,49 @@ function readAllBlogs() {
             card.appendChild(cardBody);
             parent.appendChild(card);
 
-            console.log("done");
+            // card.onclick = displayBlog();
+            // console.log("done");
         })
     }
 }
 
+function BlogCliked() {
+    const cardZone = $('.blogCards .card')
+    let currentCardZoneId;
+    cardZone.click(function () {
+        currentCardZoneId = event.target.parentNode;
+        if (currentCardZoneId.className === 'card') {
+            // console.log(currentCardZoneId.id);
+            let currentBlog = getBlogById(currentCardZoneId.id);
+            displayBlog(currentBlog)
+        } else {
+            // console.log(currentCardZoneId.parentNode.id);
+            let currentBlog = getBlogById(currentCardZoneId.parentNode.id)
+            displayBlog(currentBlog)
+        }
+    })
+}
+
+function getBlogById(blogId) {
+    // console.log(blogId);
+    let blogs = JSON.parse(localStorage.getItem('blogDB')).blogs;
+    let currentBlog = blogs.filter(blog => blog.id == blogId);
+
+    // console.log(blogs);
+    // console.log(currentBlog);
+    // console.log("object");
+    return currentBlog;
+
+}
+
+function displayBlog(blog) {
+    document.getElementById('displayBlogTitle').innerText = blog[0].title;
+    document.getElementById('displayBlogImg').src = blog[0].image;
+    document.getElementById('displayBlogContent').innerText = blog[0].content;
+
+}
+
 readAllBlogs();
+// BlogCliked();
+$('.blogCards .card').click(BlogCliked())
+// console.log(JSON.parse(localStorage.getItem("blogDB")));
