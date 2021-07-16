@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>BLOGGY</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <!-- My own style -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header class="main2">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="back" href="index.html">
+                <i class="fal fa-long-arrow-left"></i>
+                <h6>Back</h6>
+            </a>
+            <img class="navbar-brand" src="img/logo.png" width="180px" height="100px" />
+        </nav>
+
+    </header>
+    <div class="container">
+        <section class="recetBlogs" id="recetBlogs">
+            <hr />
+            <h1>Recent Blogs</h1>
+            <div class="blogCards" id="allBlogs">
+
+            </div>
+        </section>
+    </div>
+
+    <!-- display blog  -->
+    <div class="modal fade" id="displayBlog" tabindex="-1" role="dialog" aria-labelledby="displayBlog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="displayBlogTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="" id="displayBlogImg" class="cardImage" />
+                    <p id="displayBlogContent">
+
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="js/blogs.js"></script>
+
+</body>
+
+</html>

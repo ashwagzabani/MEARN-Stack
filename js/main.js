@@ -93,16 +93,16 @@ function createNewBlogDOM(blogId, blogTitle, blogContent, blogImg) {
     // console.log($('#blogId'));
 }
 
-function readAllBlogs() {
+function readRecentBlogs() {
     let parent = document.getElementById('blogCards'), card, cardHeader, cardBody, img, title, content;
 
     if (localStorage.getItem('blogDB') === null) {
         localStorage.setItem('blogDB', JSON.stringify({ "blogs": [] }));
         parent.innerText = 'There is no blog yet!'
     } else {
-        let blogs = JSON.parse(localStorage.getItem('blogDB')).blogs;
+        let blogs = JSON.parse(localStorage.getItem('blogDB')).blogs.reverse().slice(0, 3);
         // console.log(blogs.blogs);
-        blogs.reverse().map(blog => {
+        blogs.map(blog => {
             // create new elements
             parent = document.getElementById('blogCards');
             card = document.createElement('div');
@@ -176,7 +176,7 @@ function displayBlog(blog) {
 
 }
 
-readAllBlogs();
+readRecentBlogs();
 // BlogCliked();
 $('.blogCards .card').click(BlogCliked())
 // console.log(JSON.parse(localStorage.getItem("blogDB")));

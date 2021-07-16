@@ -5,7 +5,22 @@
     background-color: #98d4d2;
 }
 
+.main2{
+    background-color: #98d4d2;
+}
 
+.main2 .back{
+    text-decoration: none;
+}
+
+
+.main2 i,h6 {
+    color: #ffffff;
+}
+
+.main2 i {
+    font-size: 28pt;
+}
 .navbar-light .navbar-nav .nav-link{
     color: #ffffff;
 
