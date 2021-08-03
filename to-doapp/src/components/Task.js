@@ -11,7 +11,11 @@ class Task extends Component {
                         {this.props.taskDetails.task}
                     </span>
                     <span className="control-icons" id="control-icons">
-                        <i class="fa fa-check" onClick={() => this.props.handleDoneClick(this.props.taskDetails.taskId)}> </i>
+                        {this.props.taskDetails.isFinish ?
+                            <i class="fa fa-retweet" onClick={() => this.props.handleDoneClick(this.props.taskDetails.taskId)}> </i>
+                            :
+                            <i class="fa fa-check" onClick={() => this.props.handleDoneClick(this.props.taskDetails.taskId)}> </i>
+                        }
                         <i class="fa fa-trash" onClick={() => this.props.handleDeleteClick(this.props.taskDetails.taskId)}></i>
                     </span>
                 </li>
