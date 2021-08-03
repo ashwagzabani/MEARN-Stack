@@ -1,0 +1,31 @@
+.task{
+  text-decoration: line-through;
+}
+
+.task-list{
+  text-decoration: none;
+}
+
+.task-list li{
+  font-size: 15pt;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.control-icons{
+  display: none;
+}
+
+#task:hover > #control-icons{
+  display: block;
+}
+
+.control-icons i{
+  font-size: 15pt;
+  margin: 0 5px;
+}
+
+.fa:hover{
+  cursor: pointer;
+}
