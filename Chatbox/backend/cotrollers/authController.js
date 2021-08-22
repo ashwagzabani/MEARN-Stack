@@ -8,9 +8,10 @@ exports.login = async (req, res, next) => {
         const user = await User.findOne({ email, password }).select("+password");
 
         if (!user) {
-            const error = new Error("wrang credentials");
-            error.statusCode = 401;
-            throw error;
+            // const error = new Error("wrang credentials");
+            // error.statusCode = 401;
+            // throw error;
+            return res.status(401).send("wrang credentials")
         }
 
         return res.send({ user })

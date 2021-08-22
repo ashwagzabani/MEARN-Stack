@@ -1,5 +1,8 @@
-.App {
+.messaging {
   text-align: center;
+  background-color: #0DB0C1;
+  color: #896012;
+  font-size: 15pt;
 }
 
 .App-logo {
@@ -35,4 +38,41 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.home{
+  width: 90%;
+  height: 100vh;
+  margin: 5% auto;
+}
+
+.logoSide{
+  background-color: white;
+}
+
+.fromSide{
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.options{
+  display: flex; 
+}
+.btn.signUp , .btn.logIn {
+  color: #ffffff;
+  font-size: 14pt;
+  width: 45%;
+  margin-right: 15px;
+}
+.signUp{
+  background-color: #019cab;
+}
+
+.logIn{
+  background-color: #8a5d15;
+}
+
+.toasterToggle{
+  display: block;
 }
