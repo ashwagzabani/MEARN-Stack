@@ -24,15 +24,32 @@ class Form extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const loginData = {
+        const userData = {
             email: this.state.email,
             name: this.state.name,
             password: this.state.password,
         }
-
-        axios.post('http://localhost:8000/api/auth/login', loginData)
+        if (this.props.type === 'login') {
+            axios.post('http://localhost:8000/api/auth/login', userData)
+                .then(response => {
+                    this.setState({
+                        userLoggedIn: {
+                            username: response.data.user.name,
+                            userId: response.data.user._id
+                        }
+                    })
+                    console.log(this.state.userLoggedIn);
+                    this.props.login(this.state.userLoggedIn)
+                    console.log(this.props.userLoggedIn);
+                    this.handlingButtonClick();
+                })
+                .catch(err => {
+                    console.error(err);
+                    this.alertMesage();
+                });
+        }
+        axios.post('http://localhost:8000/api/auth/signup', userData)
             .then(response => {
-                // console.log(response.data);
                 this.setState({
                     userLoggedIn: {
                         username: response.data.user.name,
@@ -42,17 +59,17 @@ class Form extends Component {
                 console.log(this.state.userLoggedIn);
                 this.props.login(this.state.userLoggedIn)
                 console.log(this.props.userLoggedIn);
-                // return (<Redirect exact to="/chat" />);
                 this.handlingButtonClick();
             })
             .catch(err => {
                 console.error(err);
                 this.alertMesage();
             });
+
     };
 
     handlingButtonClick = () => {
-        this.props.history.push("/chat") //doing redirect here.
+        this.props.history.push("/chat");
     }
 
     handleClick = e => {

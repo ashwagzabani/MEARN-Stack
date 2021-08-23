@@ -56,13 +56,13 @@ class Chat extends Component {
                                     );
                                 })}
                             </ul>
-                            <lable>username</lable>
+                            {/* <lable>username</lable>
                             <input
                                 type="text"
                                 name="username"
                                 value={this.state.username}
                                 onChange={this.handleChange}
-                            />
+                            /> */}
                             <lable>message</lable>
                             <input
                                 type="text"

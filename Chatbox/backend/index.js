@@ -6,6 +6,7 @@ const socket = require('socket.io');
 const app = express();
 const mongoose = require('mongoose');
 const authRouters = require('./routs/user')
+const chatRouters = require('./routs/chat')
 
 app.use(cors());
 
@@ -15,6 +16,7 @@ mongoose.connect('mongodb://127.0.0.1/testdb', { useNewUrlParser: true, useUnifi
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/api/auth', authRouters)
+app.use('/api/chat', chatRouters)
 
 const server = app.listen(8000, () => {
     console.log("listening... on port 8000");
