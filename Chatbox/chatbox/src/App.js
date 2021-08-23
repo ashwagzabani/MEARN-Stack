@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 import './App.css';
-import Home from './components/Home'
+import Home from './components/User'
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Chat from './components/Chat';
+import LandingPage from './components/LandingPage';
 
 class App extends Component {
   constructor(props) {
@@ -49,9 +50,12 @@ class App extends Component {
     return (
       <Router>
         <div>
-          {/* <Home /> */}
-          <Route path="/" component={Home} />
-          <Route path="/chat" component={Chat} />
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/user" component={Home} />
+          <Route path="/chat" render={
+            (props) => (
+              <Chat {...props} />
+            )} />
         </div>
         {/* // <div>
       //   <ul>

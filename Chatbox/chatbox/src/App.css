@@ -41,18 +41,21 @@
 }
 
 .home{
-  width: 90%;
-  height: 100vh;
+  width: 65%;
+  height: 100%;
   margin: 5% auto;
 }
 
 .logoSide{
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .fromSide{
   display: block;
-  width: 50%;
+  width: 90%;
   margin: 0 auto;
 }
 

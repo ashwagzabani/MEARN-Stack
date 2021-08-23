@@ -18,7 +18,7 @@ class Chat extends Component {
             this.setState({
                 messages: [...this.state.messages, data]
             });
-            console.log(this.state.messages);
+            // console.log(this.state.messages);
 
         });
 
@@ -31,7 +31,7 @@ class Chat extends Component {
 
     handleSubmit = () => {
         this.socket.emit('SEND_MESSAGE', {
-            author: this.state.username,
+            author: this.props.userLoggedIn.username, //this.state.username
             message: this.state.message
         });
     }
