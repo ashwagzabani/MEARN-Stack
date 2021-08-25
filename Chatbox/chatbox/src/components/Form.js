@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class Form extends Component {
     constructor(props) {
@@ -29,7 +29,8 @@ class Form extends Component {
             name: this.state.name,
             password: this.state.password,
         }
-        if (this.props.type === 'login') {
+        console.log(this.props.type);
+        if (this.props.type == 'login') {
             axios.post('http://localhost:8000/api/auth/login', userData)
                 .then(response => {
                     this.setState({
@@ -48,25 +49,27 @@ class Form extends Component {
                     this.alertMesage();
                 });
         }
-        axios.post('http://localhost:8000/api/auth/signup', userData)
-            .then(response => {
-                this.setState({
-                    userLoggedIn: {
-                        username: response.data.user.name,
-                        userId: response.data.user._id
-                    }
+        else {
+            axios.post('http://localhost:8000/api/auth/signup', userData)
+                .then(response => {
+                    this.setState({
+                        userLoggedIn: {
+                            username: response.data.user.name,
+                            userId: response.data.user._id
+                        }
+                    })
+                    console.log(this.state.userLoggedIn);
+                    this.props.login(this.state.userLoggedIn)
+                    console.log(this.props.userLoggedIn);
+                    this.handlingButtonClick();
                 })
-                console.log(this.state.userLoggedIn);
-                this.props.login(this.state.userLoggedIn)
-                console.log(this.props.userLoggedIn);
-                this.handlingButtonClick();
-            })
-            .catch(err => {
-                console.error(err);
-                this.alertMesage();
-            });
+                .catch(err => {
+                    console.error(err);
+                    this.alertMesage();
+                });
 
-    };
+        }
+    }
 
     handlingButtonClick = () => {
         this.props.history.push("/chat");
@@ -111,6 +114,9 @@ class Form extends Component {
                             <label>Name</label>
                             <input type="text" name="name" placeholder="type your username" className="form-control" onChange={this.handleChange} />
                         </div> : null}
+                    <div>
+                        {this.props.type}
+                    </div>
 
                     <div className="form-group">
                         <label>Email</label>

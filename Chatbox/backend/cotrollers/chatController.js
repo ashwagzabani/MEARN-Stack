@@ -1,5 +1,5 @@
 const Chat = require('../models/chat');
-
+//Done
 exports.send = async (req, res, next) => {
     try {
         const users = req.body.users;
@@ -12,17 +12,17 @@ exports.send = async (req, res, next) => {
         next(err);
     }
 }
+//Done
 exports.chatListByUserId = async (req, res, next) => {
     try {
-        const id = req.params.id;
-        const chat = await Chat.find({ users: { $elemMatch: { id } } });
-        console.log(id);
+        const chat = await Chat.find({ users: { $elemMatch: { userId: req.params.id } } });
         return res.send({ chat })
     }
     catch (err) {
         next(err);
     }
 }
+//Done
 exports.chatById = async (req, res, next) => {
     try {
         const id = req.params.id;
@@ -34,17 +34,18 @@ exports.chatById = async (req, res, next) => {
         next(err);
     }
 }
-
+//Done
 exports.addNewMessageToExistChat = async (req, res, next) => {
     try {
         const id = req.params.id;
         const message = req.body.message;
-        const chat = await Chat.findOneAndUpdate({ _id: { $eq: id } },
-            { $push: { messages: { message } } });
-        console.log(id);
+        const chat = await Chat.findOneAndUpdate({ _id: id },
+            { $push: { messages: message } });
         return res.send({ chat })
     }
     catch (err) {
         next(err);
     }
 }
+
+

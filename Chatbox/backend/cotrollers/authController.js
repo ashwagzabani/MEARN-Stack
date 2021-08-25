@@ -47,4 +47,14 @@ exports.signup = async (req, res, next) => {
     }
 }
 
+exports.userDetails = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const user = await User.findOne({ _id: id });
+        return res.send({ user })
+    }
+    catch (err) {
+        next(err);
+    }
+}
 

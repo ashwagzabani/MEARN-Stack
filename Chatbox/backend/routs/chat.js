@@ -5,7 +5,7 @@ const chatController = require('../cotrollers/chatController')
 
 router.post('/', chatController.send)
 router.get('/:id', chatController.chatListByUserId)
-router.patch('/:id', chatController.addNewMessageToExistChat)
 router.get('/list/:id', chatController.chatById)
+router.patch('/:id', chatController.addNewMessageToExistChat)
 
 module.exports = router;
