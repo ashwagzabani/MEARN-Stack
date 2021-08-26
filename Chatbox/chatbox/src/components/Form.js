@@ -72,7 +72,7 @@ class Form extends Component {
     }
 
     handlingButtonClick = () => {
-        this.props.history.push("/chat");
+        this.props.history.push("/chatList");
     }
 
     handleClick = e => {

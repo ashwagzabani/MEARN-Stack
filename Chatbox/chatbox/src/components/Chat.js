@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Chat extends Component {
     constructor(props) {
@@ -24,8 +25,8 @@ class Chat extends Component {
 
     }
 
-    componentDidMount = () => {
-        this.socket.emit('CONNECTED', { id: "612425a73cb9b62de4e0132c" })
+    componentDidMount = () => {//"612425a73cb9b62de4e0132c"
+        this.socket.emit('CONNECTED', { id: this.props.location.state.chatId })
         this.socket.on('Old_MESSAGES', data => {
             this.setState({
                 messages: data.messages
@@ -42,7 +43,7 @@ class Chat extends Component {
 
     handleSubmit = () => {
         this.socket.emit('SEND_MESSAGE', {
-            id: "612425a73cb9b62de4e0132c",
+            id: this.props.location.state.chatId,
             messages: {
                 userId: this.props.userLoggedIn.userId, //this.state.username
                 username: this.props.userLoggedIn.username, //this.state.username
@@ -66,7 +67,9 @@ class Chat extends Component {
     render() {
         return (
             <div>
+                <Link to="/chatList" >ch</Link>
                 <p>{this.props.userLoggedIn != null ? this.props.userLoggedIn.username : "null"}</p>
+                <p>{this.props.location.state != null ? this.props.location.state.chatId : "props null"}</p>
                 <div className="row">
                     <div className="col-md-4">
                         <h2>Chat list</h2>

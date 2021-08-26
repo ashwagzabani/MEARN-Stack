@@ -6,6 +6,7 @@ import Home from './components/User'
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Chat from './components/Chat';
 import LandingPage from './components/LandingPage';
+import ChatList from './components/ChatList';
 
 class App extends Component {
   constructor(props) {
@@ -52,6 +53,10 @@ class App extends Component {
         <div>
           <Route exact path="/" component={LandingPage} />
           <Route path="/user" component={Home} />
+          <Route path="/chatList" render={
+            (props) => (
+              <ChatList {...props} />
+            )} />
           <Route path="/chat" render={
             (props) => (
               <Chat {...props} />

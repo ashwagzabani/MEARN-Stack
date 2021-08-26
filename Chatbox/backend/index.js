@@ -35,49 +35,51 @@ const io = socket(server);
 //socket.emit ==> to send to client theirself
 
 io.on('connection', function (socket) {
-    socket.on('CONNECTED', data => {
-        Chat.findOne({ _id: data.id })
-            .then(response => {
-                // console.log("object: ", response.messages);
-                let messages = {
-                    messages: response.messages
-                }
-                socket.emit('Old_MESSAGES', messages);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        // console.log("connected ", data);
-    })
-
-    socket.on('SEND_MESSAGE', function (data) {
-        console.log(data);
-        try {
-            const chat = Chat.findOneAndUpdate({ _id: data.id },
-                { $push: { messages: data.messages } })
-                .then(res => {
-                    // console.log(res);
-                    console.log("success");
+    socket.on('join', function (data) {
+        socket.on('CONNECTED', data => {
+            Chat.findOne({ _id: data.id })
+                .then(response => {
+                    // console.log("object: ", response.messages);
+                    let messages = {
+                        messages: response.messages
+                    }
+                    socket.emit('Old_MESSAGES', messages);
+                })
+                .catch(err => {
+                    console.log(err);
                 });
-            // console.log(chat)
-        }
-        catch (err) {
-            console.log(err);
-        }
+            // console.log("connected ", data);
+        })
 
-        //send all chat messages to client
-        Chat.findOne({ _id: data.id })
-            .then(response => {
-                // console.log("object: ", response.messages);
-                let messages = {
-                    messages: response.messages
-                }
-                io.emit('RECEIVE_MESSAGE', messages);
-            })
-            .catch(err => {
+        socket.on('SEND_MESSAGE', function (data) {
+            console.log(data);
+            try {
+                const chat = Chat.findOneAndUpdate({ _id: data.id },
+                    { $push: { messages: data.messages } })
+                    .then(res => {
+                        // console.log(res);
+                        console.log("success");
+                    });
+                // console.log(chat)
+            }
+            catch (err) {
                 console.log(err);
-            });
-        // console.log(messages);
+            }
+
+            //send all chat messages to client
+            Chat.findOne({ _id: data.id })
+                .then(response => {
+                    // console.log("object: ", response.messages);
+                    let messages = {
+                        messages: response.messages
+                    }
+                    io.emit('RECEIVE_MESSAGE', messages);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            // console.log(messages);
+        });
     });
 });
 
