@@ -35,7 +35,9 @@ const io = socket(server);
 //socket.emit ==> to send to client theirself
 
 io.on('connection', function (socket) {
-    socket.on('join', function (data) {
+    socket.on('JOIN', function (join) {
+        socket.join(join.id); // We are using room of socket io
+
         socket.on('CONNECTED', data => {
             Chat.findOne({ _id: data.id })
                 .then(response => {
@@ -43,7 +45,7 @@ io.on('connection', function (socket) {
                     let messages = {
                         messages: response.messages
                     }
-                    socket.emit('Old_MESSAGES', messages);
+                    io.to(join.id).emit('Old_MESSAGES', messages);
                 })
                 .catch(err => {
                     console.log(err);
@@ -54,7 +56,7 @@ io.on('connection', function (socket) {
         socket.on('SEND_MESSAGE', function (data) {
             console.log(data);
             try {
-                const chat = Chat.findOneAndUpdate({ _id: data.id },
+                Chat.findOneAndUpdate({ _id: data.id },
                     { $push: { messages: data.messages } })
                     .then(res => {
                         // console.log(res);
@@ -73,7 +75,7 @@ io.on('connection', function (socket) {
                     let messages = {
                         messages: response.messages
                     }
-                    io.emit('RECEIVE_MESSAGE', messages);
+                    io.to(join.id).emit('RECEIVE_MESSAGE', messages);
                 })
                 .catch(err => {
                     console.log(err);
@@ -81,5 +83,7 @@ io.on('connection', function (socket) {
             // console.log(messages);
         });
     });
+    socket.on("disconnect", () => {
+        socket.leave(join.id);
+    });
 });
-

@@ -15,6 +15,7 @@ class Chat extends Component {
         };
 
         this.socket = io('localhost:8000');
+        // this.socket.emit('JOIN', { id: this.props.location.chatId });
 
 
         this.socket.on('RECEIVE_MESSAGE', data => {
@@ -26,6 +27,8 @@ class Chat extends Component {
     }
 
     componentDidMount = () => {//"612425a73cb9b62de4e0132c"
+
+        this.socket.emit('JOIN', { id: this.props.location.state.chatId })
         this.socket.emit('CONNECTED', { id: this.props.location.state.chatId })
         this.socket.on('Old_MESSAGES', data => {
             this.setState({
