@@ -112,7 +112,7 @@ class Form extends Component {
                             <i class="fa fa-check"></i> {this.state.errorMessage}
                         </div>
                     </div>
-                    <p>{this.state.userLoggedIn != null ? this.state.userLoggedIn.username : ''}</p>
+                    {/* <p>{this.state.userLoggedIn != null ? this.state.userLoggedIn.username : ''}</p> */}
                     {/* Log in form */}
                     {this.props.type === "signup" ?
                         <div className="form-group">
@@ -120,7 +120,6 @@ class Form extends Component {
                             <input type="text" name="name" placeholder="type your username" className="form-control" onChange={this.handleChange} />
                         </div> : null}
                     <div>
-                        {this.props.type}
                     </div>
 
                     <div className="form-group">

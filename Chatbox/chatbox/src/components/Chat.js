@@ -70,9 +70,8 @@ class Chat extends Component {
     render() {
         return (
             <div>
-                <Link to="/chatList" >ch</Link>
-                <p>{this.props.userLoggedIn != null ? this.props.userLoggedIn.username : "null"}</p>
-                <p>{this.props.location.state != null ? this.props.location.state.chatId : "props null"}</p>
+                <Link to="/chatList" >back to chat list</Link>
+                <p>chat id: {this.props.location.state != null ? this.props.location.state.chatId : "props null"}</p>
                 <div className="row">
                     <div className="col-md-4">
                         <h2>Chat list</h2>
@@ -84,7 +83,7 @@ class Chat extends Component {
                                 {this.state.messages.map(item => {
                                     return (
                                         <li>
-                                            {item.userId} : {item.content}
+                                            {this.props.userLoggedIn.username} : {item.content}
                                         </li>
                                     );
                                 })}

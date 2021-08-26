@@ -10,6 +10,6 @@ exports.hasPassword = body("password")
 
 exports.hasName = body("name")
     .isLength({
-        min: 5
+        min: 1
     })
-    .withMessage("Name is required. Min Length 5 characters.")
+    .withMessage("Name is required. Min Length 1 characters.")

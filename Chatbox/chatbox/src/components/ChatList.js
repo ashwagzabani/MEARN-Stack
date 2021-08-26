@@ -85,11 +85,12 @@ class ChatList extends Component {
     render() {
         return (
             <div className="ChatList">
-                <p>{this.props.userLoggedIn != null ? this.props.userLoggedIn.username : "null"}</p>
-                <p>{this.props.location.state != null ? this.props.location.state.test : "null"}</p>
+                <p>Hi : {this.props.userLoggedIn != null ? this.props.userLoggedIn.username : "null"}</p>
+                {/* <p>{this.props.location.state != null ? this.props.location.state.test : "null"}</p> */}
 
                 <div className="card">
                     <div className="newChat">
+                        <p>start chating by enter user email</p>
                         <form>
                             <div className="form-group">
                                 <input type="email" name="user" placeholder="example@example.com" className="form-control" onChange={this.handleChange} />
@@ -108,7 +109,7 @@ class ChatList extends Component {
                                         state: {
                                             chatId: chat._id
                                         }
-                                    }} className="list-group-item list-group-item-action">wwwwwwwww</Link>
+                                    }} className="list-group-item list-group-item-action">chat id: {chat._id}</Link>
                                 </>
                             );
                         })}

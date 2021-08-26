@@ -15,7 +15,7 @@ const chatController = require('./cotrollers/chatController')
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://127.0.0.1/testdb', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1/testdb2', { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 app.use(bodyParser.json());
