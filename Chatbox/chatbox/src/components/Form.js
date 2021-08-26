@@ -72,7 +72,12 @@ class Form extends Component {
     }
 
     handlingButtonClick = () => {
-        this.props.history.push("/chatList");
+        this.props.history.push({
+            pathname: "/chatList",
+            state: {
+                test: "dddd"
+            }
+        });
     }
 
     handleClick = e => {

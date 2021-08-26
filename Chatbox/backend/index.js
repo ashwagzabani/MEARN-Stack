@@ -83,7 +83,7 @@ io.on('connection', function (socket) {
             // console.log(messages);
         });
     });
-    socket.on("disconnect", () => {
-        socket.leave(join.id);
-    });
+    // socket.on("disconnect", () => {
+    //     socket.leave(join.id);
+    // });
 });

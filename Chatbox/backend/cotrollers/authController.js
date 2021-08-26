@@ -58,3 +58,12 @@ exports.userDetails = async (req, res, next) => {
     }
 }
 
+exports.findUserByEmail = async (req, res, next) => {
+    try {
+        const user = await User.findOne({ email: { $eq: req.params.email } });
+        return res.send({ user })
+    }
+    catch (err) {
+        next(err);
+    }
+}

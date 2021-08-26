@@ -13,7 +13,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      username: '',
       message: '',
       messages: [],
       userLoggedIn: null
@@ -31,21 +30,6 @@ class App extends Component {
     });
   }
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  handleSubmit = () => {
-    this.socket.emit('SEND_MESSAGE', {
-      author: this.state.username,
-      message: this.state.message
-    });
-
-    this.setState({ message: '' });
-    console.log(this.state.username);
-  };
 
   render() {
     return (
@@ -62,34 +46,6 @@ class App extends Component {
               <Chat {...props} />
             )} />
         </div>
-        {/* // <div>
-      //   <ul>
-      //     {this.state.messages.map(item => {
-      //       return (
-      //         <li>
-      //           {item.author} : {item.message}
-      //         </li>
-      //       );
-      //     })}
-      //   </ul>
-      //   <lable>username</lable>
-      //   <input
-      //     type="text"
-      //     name="username"
-      //     value={this.state.username}
-      //     onChange={this.handleChange}
-      //   />
-
-      //   <lable>message</lable>
-      //   <input
-      //     type="text"
-      //     name="message"
-      //     value={this.state.message}
-      //     onChange={this.handleChange}
-      //   />
-
-      //   <button onClick={this.handleSubmit}>Send</button>
-      // </div> */}
       </Router>
     );
   }

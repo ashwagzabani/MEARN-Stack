@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Link, Switch } from "react-router-dom";
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
 
 
 class ChatList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chatList: []
+            chatList: [],
+            user: ''
         }
     }
 
@@ -27,12 +29,75 @@ class ChatList extends Component {
             });
     }
 
+    handleChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    };
+
+    handlingButtonClick = (id) => {
+        this.props.history.push({
+            pathname: "/chat",
+            state: {
+                chatId: id
+            }
+        });
+    }
+
+    handelNewChat = (e) => {
+        e.preventDefault();
+        this.userExist();
+        if (this.state.user != null) {
+            axios.post("http://localhost:8000/api/chat/", {
+                "users": [
+                    { "userId": this.props.userLoggedIn.userId },
+                    { "userId": this.state.user._id }
+                ]
+            })
+                .then(response => {
+                    console.log(response.data.chat._id);
+                    this.handlingButtonClick(response.data.chat._id);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        } else {
+            console.log("object");
+        }
+
+    }
+
+    userExist = () => {
+        console.log(this.state.user);
+        axios.get(`http://localhost:8000/api/auth/user/${this.state.user}`)
+            .then(response => {
+                this.setState({
+                    user: response.data.user
+                })
+                // console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+
     render() {
         return (
             <div className="ChatList">
                 <p>{this.props.userLoggedIn != null ? this.props.userLoggedIn.username : "null"}</p>
+                <p>{this.props.location.state != null ? this.props.location.state.test : "null"}</p>
 
                 <div className="card">
+                    <div className="newChat">
+                        <form>
+                            <div className="form-group">
+                                <input type="email" name="user" placeholder="example@example.com" className="form-control" onChange={this.handleChange} />
+                                <input type="button" name="createChat" value="Start chating" className="btn btn-success" onClick={this.handelNewChat} />
+                            </div>
+
+                        </form>
+                    </div>
                     <div className="list-group">
 
                         {this.state.chatList.map(chat => {
@@ -65,4 +130,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ChatList);
+export default withRouter(connect(mapStateToProps)(ChatList));
