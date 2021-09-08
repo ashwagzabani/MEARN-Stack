@@ -1,25 +1,75 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      dataInput: "",
+      result: ""
+    }
+
+    this.handleClick = this.handleClick.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleClick = (e) => {
+    e.preventDefault();
+    let data = this.state.dataInput
+    this.setState({
+      dataInput: data + e.target.name
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let data = this.state.dataInput == "" ? 0 : this.state.dataInput;
+    let result = eval(data);
+    this.setState({
+      dataInput: data + ` = ${result}`
+    })
+
+
+  }
+
+  handelReset = () => {
+    this.setState({
+      dataInput: ""
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <form>
+          <div id="calculator">
+            <input type="text" name="value" className="result" value={this.state.dataInput} disabled />
+            <button class="clear" type="reset" onClick={this.handelReset}>C</button>
+
+            <button className="span" onClick={this.handleClick} name="7">7</button>
+            <button className="span" onClick={this.handleClick} name="8">8</button>
+            <button className="span" onClick={this.handleClick} name="9">9</button>
+            <button className="span" onClick={this.handleClick} name="+">+</button>
+
+            <button className="span" onClick={this.handleClick} name="4">4</button>
+            <button className="span" onClick={this.handleClick} name="5">5</button>
+            <button className="span" onClick={this.handleClick} name="6">6</button>
+            <button className="span" onClick={this.handleClick} name="-">-</button>
+
+            <button className="span" onClick={this.handleClick} name="1">1</button>
+            <button className="span" onClick={this.handleClick} name="2">2</button>
+            <button className="span" onClick={this.handleClick} name="3">3</button>
+            <button className="span" onClick={this.handleClick} name="/">/</button>
+
+            <button className="span" onClick={this.handleClick} name="0">0</button>
+            <button className="span" onClick={this.handleClick} name=".">.</button>
+            <button className="span" onClick={this.handleSubmit}>=</button>
+            <button className="span" onClick={this.handleClick} name="*">*</button>
+          </div>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default App;
