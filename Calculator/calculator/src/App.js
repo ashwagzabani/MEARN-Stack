@@ -44,9 +44,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1><center>Simple Calculator</center></h1>
         <form>
           <div id="calculator">
-            <h1>Simple Calculator</h1>
             <input type="text" name="value" className="result" value={this.state.dataInput} disabled />
             <button class="clear" type="reset" onClick={this.handelReset}>C</button>
 
