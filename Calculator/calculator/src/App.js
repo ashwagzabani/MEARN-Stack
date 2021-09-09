@@ -24,7 +24,7 @@ class App extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let data = this.state.dataInput == "" ? 0 : this.state.dataInput;
-    let result = eval(data);
+    let result = this.getResult(data);
     this.setState({
       dataInput: data + ` = ${result}`
     })
@@ -38,11 +38,15 @@ class App extends Component {
     })
   }
 
+  getResult(data) {
+    return eval(data);
+  }
   render() {
     return (
       <div className="App">
         <form>
           <div id="calculator">
+            <h1>Simple Calculator</h1>
             <input type="text" name="value" className="result" value={this.state.dataInput} disabled />
             <button class="clear" type="reset" onClick={this.handelReset}>C</button>
 
